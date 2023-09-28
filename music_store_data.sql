@@ -1,11 +1,5 @@
-select * from employee
---> 1. who is the senior most employee in the company
 
- select top 1 * from employee
- order by levels desc
- 
-
- --> 2. which countries have the most invoices
+ --> 1. which countries have the most invoices
  
  select * from invoice;
  select top 1 * from (
@@ -17,12 +11,12 @@ select * from employee
  order by g.total_count desc
 
 
- --> 3. find the top 3 total invoices
+ --> 2. find the top 3 total invoices
  select * from invoice
  select top 3 total from invoice
  order by total desc
 
- --> 4. The music store would like to throw a music festival in the city in which it has gained maximum money from. create a query to mention the 
+ --> 3. The music store would like to throw a music festival in the city in which it has gained maximum money from. create a query to mention the 
  --> name and total invoices
 
 select billing_city, cast(sum(total) as int) as total_invoices 
@@ -31,7 +25,7 @@ group by billing_city
 order by total_invoices desc
 
 
---> 5. Find the customer name who has spent the most in buying the albums
+--> 4. Find the customer name who has spent the most in buying the albums
 select * from customer
 select * from invoice
 
@@ -43,7 +37,7 @@ group by c.customer_id,c.first_name,c.last_name
 )s
 order by s.total desc
 
---> 6. write query to list all the people who listen rock music genre
+--> 7. write query to list all the people who listen rock music genre
 -- list their name by alphabetical order starting with A
 
 select distinct email,first_name,last_name from customer
@@ -57,7 +51,7 @@ where genre.name like 'Rock'
 order by first_name 
 
 
---> 7. write query to list the artist who has written the most rock music
+--> 8. write query to list the artist who has written the most rock music
 -- write query to show the artist name,  and total track count for top 10 rock band
 
 select top 10 artist.artist_id, artist.name, count(artist.artist_id) as total_songs
@@ -70,7 +64,7 @@ group by artist.artist_id,artist.name
 order by total_songs desc
  
 
---> list all the song names that have song length greater than average song length
+--> 9.list all the song names that have song length greater than average song length
 
 select name, milliseconds from track
 where milliseconds > (select AVG(milliseconds) from track)
